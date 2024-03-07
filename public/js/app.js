@@ -19315,8 +19315,35 @@ var _withScopeId = function _withScopeId(n) {
 var _hoisted_1 = {
   "class": "container"
 };
-var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<h1 class=\"login_head\" data-v-46857e5e> Please enter your </h1><form class=\"login_form\" data-v-46857e5e><div class=\"login_element\" data-v-46857e5e><span class=\"login_input_name\" data-v-46857e5e> login </span><input class=\"login_input\" type=\"text\" name=\"email\" data-v-46857e5e></div><div class=\"login_element\" data-v-46857e5e><span class=\"login_input_name\" data-v-46857e5e> password </span><input class=\"login_input\" type=\"text\" name=\"password\" data-v-46857e5e></div><button data-v-46857e5e> Send </button></form><span class=\"access_list_head\" data-v-46857e5e> super secret passwords list </span><div class=\"access_list\" data-v-46857e5e><div class=\"access_element\" data-v-46857e5e><span class=\"access_element_text\" data-v-46857e5e> login: <strong data-v-46857e5e>123123@mail.ru</strong></span><span class=\"access_element_text\" data-v-46857e5e> password: <strong data-v-46857e5e>123456</strong></span></div><div class=\"access_element\" data-v-46857e5e><span class=\"access_element_text\" data-v-46857e5e> login: <strong data-v-46857e5e>999999@mail.ru</strong></span><span class=\"access_element_text\" data-v-46857e5e> password: <strong data-v-46857e5e>123456</strong></span></div></div>", 4);
-var _hoisted_6 = [_hoisted_2];
+var _hoisted_2 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", {
+    "class": "login_head"
+  }, " Please enter your ", -1 /* HOISTED */);
+});
+var _hoisted_3 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
+    "class": "login_form",
+    method: "POST"
+  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+    "class": "login_element"
+  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+    "class": "login_input_name"
+  }, " login "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+    "class": "login_input",
+    type: "text",
+    name: "email"
+  })]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+    "class": "login_element"
+  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+    "class": "login_input_name"
+  }, " password "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+    "class": "login_input",
+    type: "text",
+    name: "password"
+  })]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", null, " Send ")], -1 /* HOISTED */);
+});
+var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<span class=\"access_list_head\" data-v-46857e5e> super secret passwords list </span><div class=\"access_list\" data-v-46857e5e><div class=\"access_element\" data-v-46857e5e><span class=\"access_element_text\" data-v-46857e5e> login: <strong data-v-46857e5e>123123@mail.ru</strong></span><span class=\"access_element_text\" data-v-46857e5e> password: <strong data-v-46857e5e>123456</strong></span></div><div class=\"access_element\" data-v-46857e5e><span class=\"access_element_text\" data-v-46857e5e> login: <strong data-v-46857e5e>999999@mail.ru</strong></span><span class=\"access_element_text\" data-v-46857e5e> password: <strong data-v-46857e5e>123456</strong></span></div></div>", 2);
+var _hoisted_6 = [_hoisted_2, _hoisted_3, _hoisted_4];
 function render(_ctx, _cache) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, _hoisted_6);
 }

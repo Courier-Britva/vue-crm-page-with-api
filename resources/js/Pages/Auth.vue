@@ -3,7 +3,7 @@
         <h1 class="login_head">
             Please enter your
         </h1>
-        <form class="login_form">
+        <form class="login_form" method="POST">
             <div class="login_element">
                 <span class="login_input_name">
                     login
