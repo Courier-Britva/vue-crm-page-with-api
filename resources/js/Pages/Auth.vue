@@ -3,20 +3,20 @@
         <h1 class="login_head">
             Please enter your
         </h1>
-        <form class="login_form" method="POST">
+        <form class="login_form" @submit.prevent="handleSubmit">
             <div class="login_element">
                 <span class="login_input_name">
                     login
                 </span>
-                <input class="login_input" type="text" name="email">
+                <input class="login_input" type="text" v-model="email" name="email">
             </div>
             <div class="login_element">
                 <span class="login_input_name">
                     password
                 </span>
-                <input class="login_input" type="text"  name="password">
+                <input class="login_input" type="password" v-model="password" name="password">
             </div>
-            <button>
+            <button class="login_button" type="submit">
                 Send
             </button>
         </form>
@@ -45,7 +45,44 @@
 </template>
 
 <script>
+    export default {
+        data() {
+            return {
+                email: '',
+                password: '',
+            };
+        },
+        methods: {
+            getCookie(name) {
+                const value = `; ${document.cookie}`;
+                const parts = value.split(`; ${name}=`);
+                if (parts.length === 2) return parts.pop().split(';').shift();
+            },
+            async handleSubmit() {
+                const csrfToken = this.getCookie('XSRF-TOKEN');
+                try {
+                    const response = await fetch('/login', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Accept': 'application/json',
+                            'X-XSRF-TOKEN': decodeURIComponent(csrfToken),
+                        },
+                        body: JSON.stringify({
+                            email: this.email,
+                            password: this.password,
+                        }),
+                        credentials: 'same-origin',
+                    });
+                    if (!response.ok) throw new Error('Login failed');
 
+                    location.replace('/table');
+                } catch (error) {
+                    console.error('Login error:', error);
+                }
+            },
+        },
+    };
 </script>
 
 <style scoped>
@@ -98,6 +135,24 @@
     padding: 12px;
     font-size: 24px;
     border-radius: 7px;
+}
+
+.login_button{
+    font-size: 14px;
+    background-color: #000000;
+    border: 1px solid #000000;
+    color: #ffffff;
+    outline: none;
+    transition: all .3s ease-out;
+    padding: 9px 60px;
+    cursor: pointer;
+    margin-left: auto;
+    border-radius: 7px;
+}
+
+.login_button:hover{
+    background-color: #ffffff;
+    color: #000000;
 }
 
 .access_list_head{
