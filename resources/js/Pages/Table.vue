@@ -6,48 +6,79 @@
                     Logout
                 </button>
             </header>
-
-            <main class="main">
-
-            </main>
         </div>
     </div>
+    <main class="main">
+        <div class="container">
+            <div class="main_content">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Date Register</th>
+                            <th>Client Name</th>
+                            <th>Manager</th>
+                            <th>Program Type</th>
+                            <th>Program Price</th>
+                        </tr>
+                    </thead>
+                    <tbody class="main_tbody">
+                        <tr v-for="(item, index) in payPlanItem.data" :key="item.id">
+                            <td>{{ index + 1 }}</td>
+                            <td>{{ item.date_register }}</td>
+                            <td>{{ item.client_name }}</td>
+                            <td>{{ item.manager.name }}</td>
+                            <td>{{ item.program_type }}</td>
+                            <td>{{ item.program_price }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
 </template>
 
 <script>
-export default {
-    methods: {
-        getCookie(name) {
-            const value = `; ${document.cookie}`;
-            const parts = value.split(`; ${name}=`);
-            if (parts.length === 2) return parts.pop().split(';').shift();
-        },
+import { Inertia } from '@inertiajs/inertia';
 
+export default {
+    props: {
+        payPlanItem: {
+            type: Object,
+            default: () => ({
+                current_page: 1,
+                data: [],
+                // include other keys as needed or leave them out for simplicity
+            }),
+        },
+    },
+    mounted() {
+        console.log(this.payPlanItem); // Check the received prop
+    },
+    methods: {
         logoutUser() {
-            fetch('/logout', {
-                method: 'POST',
-                headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json',
-                'X-XSRF-TOKEN': decodeURIComponent(this.getCookie('XSRF-TOKEN')),
-                },
-                credentials: 'include',
-            })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Logout failed');
-                }
-                location.replace('/login');
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
+            Inertia.post('/logout');
         },
     }
 };
 </script>
 
 <style scoped>
+tr{
+    height: 36px;
+}
+td{
+    min-width: 200px;
+}
+
+th{
+    text-align: left;
+}
+
+.main_tbody{
+    border-spacing: 0 10px;
+}
+
 .container{
     max-width: 1220px;
     margin-left: auto;

@@ -45,44 +45,38 @@
 </template>
 
 <script>
-    export default {
-        data() {
-            return {
-                email: '',
-                password: '',
-            };
-        },
-        methods: {
-            getCookie(name) {
-                const value = `; ${document.cookie}`;
-                const parts = value.split(`; ${name}=`);
-                if (parts.length === 2) return parts.pop().split(';').shift();
-            },
-            async handleSubmit() {
-                const csrfToken = this.getCookie('XSRF-TOKEN');
-                try {
-                    const response = await fetch('/login', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'Accept': 'application/json',
-                            'X-XSRF-TOKEN': decodeURIComponent(csrfToken),
-                        },
-                        body: JSON.stringify({
-                            email: this.email,
-                            password: this.password,
-                        }),
-                        credentials: 'same-origin',
-                    });
-                    if (!response.ok) throw new Error('Login failed');
+import { Inertia } from '@inertiajs/inertia';
 
-                    location.replace('/table');
-                } catch (error) {
-                    console.error('Login error:', error);
-                }
-            },
-        },
+export default {
+  data() {
+    return {
+      email: '',
+      password: '',
     };
+  },
+  methods: {
+    handleSubmit() {
+      Inertia.post('/login', {
+        email: this.email,
+        password: this.password,
+      }, {
+        // This onSuccess callback is optional
+        onSuccess: (page) => {
+          if (page.props.error) {
+            console.error(page.props.error);
+          } else {
+            // Assuming '/table' is the intended destination after successful login
+            this.$inertia.replace('/table');
+          }
+        },
+        onError: (errors) => {
+          // Handle validation errors or other errors
+          console.error(errors);
+        }
+      });
+    },
+  },
+};
 </script>
 
 <style scoped>
